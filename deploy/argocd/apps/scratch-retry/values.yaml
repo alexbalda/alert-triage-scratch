@@ -1,6 +1,6 @@
 replicas: 1
 pool:
-  max: 20
+  max: 40
 resources:
   limits:
     memory: 256Mi
