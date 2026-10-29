@@ -16,4 +16,15 @@ describe('withRetry', () => {
 		}, 3);
 		assert.equal(result, 2);
 	});
+
+	it('calls the function maxRetries times when it keeps failing', async () => {
+		let calls = 0;
+		await assert.rejects(
+			withRetry(async () => {
+				calls += 1;
+				throw new Error('down');
+			}, 3)
+		);
+		assert.equal(calls, 3);
+	});
 });
